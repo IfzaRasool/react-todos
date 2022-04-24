@@ -61,15 +61,20 @@ import { v4 as uuidv4 } from "uuid";
         });
       };
 
-     render(){
-         return(
-            <div>
-            <Header />
-            <InputTodo addTodoProps={this.addTodoItem} />
-            <TodosList todos={this.state.todos} handleChangeProps={this.handleChange} deleteTodoProps={this.delTodo}/>
-            
+      render() {
+        return (
+          <div className="container">
+            <div className="inner">
+              <Header />
+              <InputTodo addTodoProps={this.addTodoItem} />
+              <TodosList
+                todos={this.state.todos}
+                handleChangeProps={this.handleChange}
+                deleteTodoProps={this.delTodo}
+              />
+            </div>
           </div>
-         );
-     }
+        );
+      }
  }
   export default TodoContainer;
