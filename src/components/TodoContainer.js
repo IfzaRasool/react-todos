@@ -10,24 +10,21 @@ import InputTodo from './InputTodo';
 
 class TodoContainer extends React.Component {
     state = {
-      todos: [
-        {
-          id: uuidv4(),
-          title: 'Setup development environment',
-          completed: true,
-        },
-        {
-          id: uuidv4(),
-          title: 'Develop website and add content',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Deploy to live server',
-          completed: false,
-        },
-      ],
+      todos: [],
     };
+
+    componentDidMount() {
+      fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+        .then((response) => response.json())
+        .then((data) => this.setState({ todos: data }));
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+      if (prevState.todos !== this.state.todos) {
+        const temp = JSON.stringify(this.state.todos);
+        localStorage.setItem('todos', temp);
+      }
+    }
 
        handleChange = (id) => {
          this.setState((prevState) => ({
