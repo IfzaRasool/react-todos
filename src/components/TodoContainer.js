@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/state-in-constructor */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-access-state-in-setstate */
@@ -60,6 +61,17 @@ class TodoContainer extends React.Component {
           todos: [...this.state.todos, newTodo],
         });
       };
+
+      setUpdate = (updatedTitle, id) => {
+        this.setState({
+          todos: this.state.todos.map((todo) => {
+            if (todo.id === id) {
+              todo.title = updatedTitle;
+            }
+            return todo;
+          }),
+        });
+      }
 
       render() {
         return (
